@@ -12,23 +12,26 @@
     </header>
 
     <main>
-        <section>
-            <h2>Webbutveckling - Ramschema</h2>
-            <div class="searchbar">
-                <input type="text" id="search" placeholder="Sök efter kurskod eller kursnamn">
-            </div>
-        </section>
+        <div class="schedule">
+            <section class="schedule-top">
+                <h2>Webbutveckling - Ramschema</h2>
+                <div class="searchbar">
+                    <label for="search">Sök:</label>
+                    <input type="text" id="search" placeholder="Sök efter kurskod eller kursnamn">
+                </div>
+            </section>
 
-        <table>
-            <thead>
-                <tr>
-                    <th data-col="code">Kurskod</th>
-                    <th data-col="coursename">Kursnamn</th>
-                    <th data-col="progression">Progression</th>
-                </tr>
-            </thead>
-            <tbody id="table-body"></tbody>
-        </table>
+            <table>
+                <thead>
+                    <tr>
+                        <th data-col="code">Kurskod</th>
+                        <th data-col="coursename">Kursnamn</th>
+                        <th data-col="progression">Progression</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+            </table>
+        </div>
     </main>
 
     <footer>
