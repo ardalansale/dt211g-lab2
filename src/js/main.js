@@ -21,7 +21,7 @@ async function fetchSchedule() {
     }
 }
 
-// En funktion som skriver ut kurserna i tabellen
+// Funktion som skriver ut kurserna i tabellen
 function showTable(courses) {
     const tbody = document.getElementById("table-body");
 
@@ -41,11 +41,11 @@ function showTable(courses) {
     });
 }
 
-// En funktion som sorterar kurserna när användaren klickar på en kolumn
+// Funktion som sorterar kurserna när användaren klickar på en kolumn
 function sortTable(column) {
 
     // Om användaren klickar på samma kolumn igen, vänds ordningen
-    if (sortColumn == column) {
+    if (sortColumn === column) {
         sortAscending = !sortAscending;
     } else {
     
@@ -65,7 +65,7 @@ function sortTable(column) {
     showTable(allCourses);
 }
 
-    // Hämta kolumnrubriker och "lyssna" på klick
+    // Hämta kolumnrubriker och lyssna på klick
     document.querySelectorAll("th").forEach(function(th) {
         th.addEventListener("click", function() {
 
@@ -74,6 +74,22 @@ function sortTable(column) {
             // Anropa sorteringsfunktionen med kolumnens namn
             sortTable(column);
         });
+    });
+
+    // Lyssna på vad användaren skriver i sökfältet
+    document.getElementById("search").addEventListener("input", function() {
+        
+        // Gör om det användaren har skrivit till små bokstäver
+        const searchText = document.getElementById("search").value.toLowerCase();
+
+        // Behåll bara kurser som matchar det användaren har skrivit
+        const filteredCourses = allCourses.filter(function(course) {
+            return course.code.toLowerCase().includes(searchText) ||
+                course.coursename.toLowerCase().includes(searchText);
+        });
+
+        // Gör om tabellen med den sorterade listan
+        showTable(filteredCourses);
     });
 
 fetchSchedule();
