@@ -41,4 +41,39 @@ function showTable(courses) {
     });
 }
 
+// En funktion som sorterar kurserna när användaren klickar på en kolumn
+function sortTable(column) {
+
+    // Om användaren klickar på samma kolumn igen, vänds ordningen
+    if (sortColumn == column) {
+        sortAscending = !sortAscending;
+    } else {
+    
+        // Byt till den nya kolumnen och börja med A till Ö
+        sortColumn = column;
+        sortAscending = true;
+    }
+
+    //Sortera listan
+    allCourses.sort(function(a, b) {
+        if (a[column] < b[column]) return sortAscending ? -1 : 1;
+        if (a[column] > b[column]) return sortAscending ? 1 : -1;
+        return 0;
+    });
+
+    // Gör om tabellen med den sorterade listan
+    showTable(allCourses);
+}
+
+    // Hämta kolumnrubriker och "lyssna" på klick
+    document.querySelectorAll("th").forEach(function(th) {
+        th.addEventListener("click", function() {
+
+            const column = th.dataset.col;
+
+            // Anropa sorteringsfunktionen med kolumnens namn
+            sortTable(column);
+        });
+    });
+
 fetchSchedule();
