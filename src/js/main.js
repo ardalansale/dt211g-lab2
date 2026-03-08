@@ -10,4 +10,18 @@ async function fetchSchedule() {
     }
 }
 
-fetchSchedule();
+function showTable(courses) {
+    const tbody = document.getElementById("table-body");
+    tbody.innerHTML = "";
+
+    courses.ForEach(function(course) {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+        <td>${course.code}</td>
+        <td>${course.coursename}</td>
+        <td>${course.progression}</td>
+        `;
+        tbody.appenChuld(row);
+    });
+}
+
